@@ -1,5 +1,11 @@
 import validator from 'validator';
 
+export const isValidUsername = (username: string): boolean => {
+    // The username validation rule is: Minimum 5 characters, maximum 20 characters, 
+    // and only contains alphanumeric characters and underscores
+    return validator.matches(username, /^[a-zA-Z0-9_]{5,20}$/);
+}
+
 export const isValidEmail = (email: string): boolean => {
     return validator.isEmail(email);
 };
