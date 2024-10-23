@@ -23,7 +23,6 @@ const generateRefreshToken = async (payload: TokenPayload): Promise<string> => {
     return refreshToken;
 };
 
-// Use the TokenResponse interface as the return type
 export const registerUser = async (username: string, email: string, password: string): Promise<TokenResponse> => {
     console.log(`Registering user with email: ${email}`);
 
@@ -55,7 +54,6 @@ export const registerUser = async (username: string, email: string, password: st
     return { accessToken, refreshToken };
 };
 
-// Use the TokenResponse interface as the return type
 export const loginUser = async (email: string, password: string): Promise<TokenResponse> => {
     const user = await getUserByEmail(email);
     if (!user) {
@@ -74,7 +72,6 @@ export const loginUser = async (email: string, password: string): Promise<TokenR
     return { accessToken, refreshToken };
 };
 
-// No need to change the refreshAccessToken function return type since it only returns the accessToken
 export const refreshAccessToken = async (refreshToken: string): Promise<string> => {
     const tokenDoc = await RefreshToken.findOne({ token: refreshToken });
 
