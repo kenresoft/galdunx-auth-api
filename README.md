@@ -70,7 +70,7 @@ BCRYPT_SALT_ROUNDS=10
 
 ## Usage
 
-After setting up the environment, the API can be accessed via [http://localhost:4444/api/v1/auth](http://localhost:4444/api/v1/auth).
+After setting up the environment, the API can be accessed via [http://localhost:4000/api/v1/auth](http://localhost:4444/api/v1/auth).
 
 Test the API with tools like Postman or cURL.
 
