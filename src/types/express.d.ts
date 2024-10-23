@@ -13,3 +13,9 @@ declare module 'express' {
         user?: IUser;
     }
 }
+
+// Token Request Interface
+interface TokenResponse {
+    accessToken: string;
+    refreshToken: string;
+}

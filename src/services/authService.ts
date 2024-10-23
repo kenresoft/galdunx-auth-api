@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config/config';
 import { User, getUserByEmail, addUser } from '../models/userModel';
 import { isValidEmail, isValidPassword, isValidUsername } from '../utils/validationUtil';
-import { TokenPayload } from '../types/express';
+import { TokenPayload, TokenResponse } from '../types/express';
 import { RefreshToken } from '../models/RefreshToken';
 
 const generateAccessToken = (payload: TokenPayload): string => {
@@ -23,7 +23,8 @@ const generateRefreshToken = async (payload: TokenPayload): Promise<string> => {
     return refreshToken;
 };
 
-export const registerUser = async (username: string, email: string, password: string): Promise<{ accessToken: string, refreshToken: string }> => {
+// Use the TokenResponse interface as the return type
+export const registerUser = async (username: string, email: string, password: string): Promise<TokenResponse> => {
     console.log(`Registering user with email: ${email}`);
 
     if (!isValidUsername(username)) {
@@ -54,7 +55,8 @@ export const registerUser = async (username: string, email: string, password: st
     return { accessToken, refreshToken };
 };
 
-export const loginUser = async (email: string, password: string): Promise<{ accessToken: string, refreshToken: string }> => {
+// Use the TokenResponse interface as the return type
+export const loginUser = async (email: string, password: string): Promise<TokenResponse> => {
     const user = await getUserByEmail(email);
     if (!user) {
         throw new Error('User not found');
@@ -72,6 +74,7 @@ export const loginUser = async (email: string, password: string): Promise<{ acce
     return { accessToken, refreshToken };
 };
 
+// No need to change the refreshAccessToken function return type since it only returns the accessToken
 export const refreshAccessToken = async (refreshToken: string): Promise<string> => {
     const tokenDoc = await RefreshToken.findOne({ token: refreshToken });
 

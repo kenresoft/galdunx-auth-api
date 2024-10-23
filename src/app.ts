@@ -7,7 +7,6 @@ const app = express();
 
 app.use(express.json());
 
-// Using API versioning for all routes
 app.use('/api/v1/', routes());
 
 app.get('/', (req, res) => {
